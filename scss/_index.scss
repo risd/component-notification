@@ -1,0 +1,45 @@
+@import "utilities";
+
+.notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  @extend %antialiased;
+  @extend %small-caps;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  padding: 20px 15px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+
+  span {
+    display: inline-block;
+    padding-bottom: 2px;
+
+    @include respond-below(large) {
+      margin: 10px 0;
+    }
+  }
+
+  button {
+    @include icon("close", 1rem, 1rem);
+    display: inline-block;
+    padding-top: 3px;
+    margin: 0 10px;
+    background-color: transparent;
+    vertical-align: top;
+    cursor: pointer;
+
+    @include respond-below(large) {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+.notification--is-closed {
+  display: none;
+}

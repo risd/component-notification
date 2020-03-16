@@ -1,0 +1,118 @@
+/* map function */
+
+@function map-previous-key($map, $key) {
+  $keys: map-keys($map);
+  $index: index($keys, $key) - 1;
+
+  @if $index < 1 {
+    @return null;
+  }
+
+  $previous-key: nth($keys, $index);
+
+  @return $previous-key;
+}
+
+@function map-next-key($map, $key) {
+  $keys: map-keys($map);
+  $index: index($keys, $key) + 1;
+
+  @if $index > length($map) {
+    @return null;
+  }
+
+  $next-key: nth($keys, $index);
+
+  @return $next-key;
+}
+
+/* responsive mixins */
+
+$breakpoints: (
+  base: 0px,
+  small: 512px,
+  medium: 768px,
+  large: 1024px,
+  huge: 1600px,
+) !default;
+
+@mixin respond-above($breakpoint, $breakpoints: $breakpoints) {
+  $min-width: map-get($breakpoints, $breakpoint) + 1;
+  $queries: "screen and (min-width: #{$min-width})";
+
+  @media #{$queries} {
+    @content;
+  }
+}
+
+@mixin respond-below($breakpoint, $breakpoints: $breakpoints) {
+  $max-width: map-get($breakpoints, $breakpoint);
+  $queries: "screen and (max-width: #{$max-width})";
+
+  @media #{$queries} {
+    @content;
+  }
+}
+
+@mixin respond-at($breakpoint, $breakpoints: $breakpoints) {
+  $min-width: map-get($breakpoints, $breakpoint);
+  $max-width: map-get($breakpoints, map-next-key($breakpoints, $breakpoint));
+  $queries: "screen";
+
+  @if $min-width > 0 {
+    $min-width: $min-width + 1;
+    $queries: $queries + " and (min-width: #{$min-width})";
+  }
+
+  @if $max-width {
+    $queries: $queries + " and (max-width: #{$max-width})";
+  }
+
+  @media #{$queries} {
+    @content;
+  }
+}
+
+
+/* type utilities */
+
+%antialiased {
+  -webkit-font-smoothing:antialiased;
+  -moz-font-smoothing:antialiased;
+  font-smoothing:antialiased;
+}
+
+%small-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* icon mixin */
+
+%icon {
+  &::after {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    content: "";
+  }
+}
+
+@mixin icon-after($name, $width: 1em, $height: 1em) {
+  display: block;
+  width: $width;
+  height: $height;
+  background-image: url("../images/banner--icon-#{$name}.svg");
+  background-size: contain;
+}
+
+@mixin icon($name, $width: 1em, $height: 1em) {
+  @extend %icon;
+  line-height: 1;
+
+  &::after {
+    @include icon-after($name, $width, $height);
+  }
+}

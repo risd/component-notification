@@ -1,0 +1,21 @@
+{
+  "name": "@risd/component-notification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "template.swig",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "copy-files-from-to"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "copy-files-from-to": "^2.3.0"
+  },
+  "copyFiles": [
+    {
+      "from": "node_modules/@risd/component-notification/images/icon-close.svg",
+      "to": "static/images/notification--icon-close.svg"
+    }
+  ]
+}
