@@ -12,7 +12,9 @@ This is the global notification banner component. It wants to live at the top of
 @import "../node_modules/@risd/component-notification/scss/index";
 ```
 
-3. reference the template within your swig templates:
+3. Copy over the notification close image from this directory into the one expected within your project. It resides at `images/icon-close.svg` of this repository, and should be moved to `static/images/notification--icon-close.svg` within your project.
+
+4. reference the template within your swig templates:
 
 ```
 {% set notification = {
