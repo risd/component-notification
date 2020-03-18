@@ -66,22 +66,17 @@ Displays a banner at the top of the page.
       else {
         document.body.classList.add('notification--is-opened');
       }
-      function closeNotification () {
-        window.localStorage.setItem('globalNotification', currentNotification);
-        document.body.classList.remove('notification--is-opened')
-        document
-          .querySelector('.notification')
-          .classList
-            .add("notification--is-closed");
-      }
     </script>
     <span>
       {{ notification|safe }}
     </span>
-    <button type="button" name="close" onclick="closeNotification();"></button>
+    <button type="button" name="close" class="notification__closer" onclick="closeNotification();"></button>
   </div>
 
   <script>
+    var closer = document.querySelector( '.notification__closer' );
+    closer.addEventListener( 'click', closeNotification )
+
     var notificationEl = document.querySelector( '.notification' );
 
     setHeightVariable();
@@ -94,6 +89,11 @@ Displays a banner at the top of the page.
     window.addEventListener( 'resize', function onResize () {
       setHeightVariable();
     } );
+
+    function closeNotification () {
+      document.body.classList.remove('notification--is-opened');
+      window.localStorage.setItem('globalNotification', currentNotification);
+      document.querySelector('.notification').classList.add("notification--is-closed");
+    }
   </script>
 {% endif %}
-
