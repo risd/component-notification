@@ -83,7 +83,7 @@ Displays a banner at the top of the page.
 
     function setHeightVariable () {
       var notificationBBox = notificationEl.getBoundingClientRect();
-      document.body.style.setProperty( '--notification-height', `${ notificationBBox.height }px` );  
+      document.body.style.setProperty( '--notification-height', `${ notificationBBox.height }px` );
     }
     
     window.addEventListener( 'resize', function onResize () {
@@ -96,4 +96,8 @@ Displays a banner at the top of the page.
       document.querySelector('.notification').classList.add("notification--is-closed");
     }
   </script>
+{% else %}
+<script>
+  document.body.style.setProperty( '--notification-height', '0px' );
+</script>
 {% endif %}
