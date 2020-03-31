@@ -27,7 +27,7 @@
     padding-bottom: 2px;
     max-width: 568px;
 
-    @include respond-below(large) {
+    @include respond-below(medium) {
       margin: 10px 0;
     }
   }
@@ -42,7 +42,7 @@
     cursor: pointer;
     border: none;
 
-    @include respond-below(large) {
+    @include respond-below(medium) {
       display: block;
       margin: 0 auto;
     }
