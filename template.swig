@@ -94,6 +94,7 @@ Displays a banner at the top of the page.
       document.body.classList.remove('notification--is-opened');
       window.localStorage.setItem('globalNotification', currentNotification);
       document.querySelector('.notification').classList.add("notification--is-closed");
+      document.body.style.setProperty( '--notification-height', '0px' );
     }
   </script>
 {% else %}
