@@ -1,6 +1,6 @@
 {
   "name": "@risd/component-notification",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "",
   "main": "template.swig",
   "scripts": {
